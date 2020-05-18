@@ -1,0 +1,98 @@
+<link href="https://fonts.googleapis.com/css?family=Srisakdi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Srisakdi&display=swap" rel="stylesheet">
+
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Github Search Profile</h1>
+        </div>
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-body">
+                    <form action="" class="search-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control mr-10" placeholder="Enter username"
+                                [(ngModel)]="username" name="username" (keyup)="findProfile()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="jumtron">
+        <div *ngIf="profile">
+
+            <div class="card">
+
+                <h1>{{profile.name}} <small>{{profile.login}}</small></h1>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="card">
+                    <div class="col-md-6">
+                        <img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
+
+
+
+                        <ul class="list-group">
+
+                            <li class="list-group-item" *ngIf="profile.bio">{{profile.name}}</li>
+
+                            <li class="list-group-item" *ngIf="profile.location">{{profile.location}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <div class="card">
+                            <p>
+                                <span class="p-a-05 bg-info text-xs-center">{{profile.followers}} Followers</span><br>
+                                <span class="p-a-05 bg-primary text-xs-center">{{profile.following}}
+                                    Following</span><br>
+                                <span class="p-a-05 bg-success text-xs-center">{{profile.public_gists}} Public
+                                    gists</span><br>
+                                <span class="p-a-05 bg-danger text-xs-center">{{profile.public_repos}} Public
+                                    Repos</span>
+                            </p>
+                        </div>
+                        <p><a href="{{profile.html_url}}" target="_ blank" class="btn btn-success btn-sm">View profile
+                                on github</a></p>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Repos</h3>
+                        </div>
+                        <div class="panel-body" *ngFor="let repo of repos">
+
+                            <div class="container col-sm-10card-columns">
+                                <div class="card" *ngFor="let repo of repos">
+                                    <div class="card">
+                                        <a href="{{repo.html_url}}" class="text-align-center" target="_blank"
+                                            class="btn btn-outline-primary">View this project on github</a>
+                                        <br>
+                                        <br>
+                                        <div class="card-header text-center">
+                                            <h3 id="rname">{{repo.name}}</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <p id="dec">
+                                                {{repo.description}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
